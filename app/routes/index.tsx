@@ -1,32 +1,12 @@
-export default function Index() {
-  return (
-    <div style={{ fontFamily: "system-ui, sans-serif", lineHeight: "1.4" }}>
-      <h1>Welcome to Remix</h1>
-      <ul>
-        <li>
-          <a
-            target="_blank"
-            href="https://remix.run/tutorials/blog"
-            rel="noreferrer"
-          >
-            15m Quickstart Blog Tutorial
-          </a>
-        </li>
-        <li>
-          <a
-            target="_blank"
-            href="https://remix.run/tutorials/jokes"
-            rel="noreferrer"
-          >
-            Deep Dive Jokes App Tutorial
-          </a>
-        </li>
-        <li>
-          <a target="_blank" href="https://remix.run/docs" rel="noreferrer">
-            Remix Docs
-          </a>
-        </li>
-      </ul>
-    </div>
-  );
+import type { ActionFunction, LoaderFunction } from '@remix-run/node'
+import { redirect } from '@remix-run/node'
+import { defaultLang } from '../../config'
+
+// note: to prevent errors [like this](https://discord.com/channels/770287896669978684/771068344320786452/921025522299981914)
+export const action: ActionFunction = async () => {
+    return redirect('https://www.youtube.com/watch?v=dQw4w9WgXcQ', 307)
+}
+
+export const loader: LoaderFunction = async () => {
+    return redirect(`/${defaultLang}`)
 }
