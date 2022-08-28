@@ -14,7 +14,7 @@ function Nav(props: NavProps) {
             <Container>
                 <ul className="flex items-center h-16 text-black">
                     <li className="mr-4">
-                        <NavLink prefetch="render" to={`/${props.lang}`}>
+                        <NavLink prefetch="intent" to={`/${props.lang}`}>
                             Home
                         </NavLink>
                     </li>

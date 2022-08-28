@@ -1,10 +1,11 @@
 import * as React from 'react'
-import { useLoaderData } from '@remix-run/react'
+import { useLoaderData, useOutletContext } from '@remix-run/react'
 import type { HeadersFunction, LoaderFunction } from '@remix-run/node'
 import { entryQuery } from '@graphql/pages/entry.gql'
 import { categoryQuery } from '@graphql/pages/category.gql'
 import { json } from '@remix-run/node'
 import { cmsClient } from '@lib/cmsClient'
+import Content from '~/components/base/Content'
 
 export const loader: LoaderFunction = async ({ params, request }) => {
     const queryParams = {
@@ -40,10 +41,14 @@ export const loader: LoaderFunction = async ({ params, request }) => {
 
 export default function Slug() {
     const loaderData = useLoaderData()
+    const { lang, navMain } = useOutletContext()
+    console.log(navMain)
 
     return (
-        <div className="container">
-            <p>{loaderData.page.title}</p>
-        </div>
+        <Content
+            lang={lang}
+            navMain={navMain}
+            locales={loaderData.page.localized}
+        />
     )
 }

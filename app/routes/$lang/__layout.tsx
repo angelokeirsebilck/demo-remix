@@ -13,6 +13,10 @@ import {
 import { cmsClient } from '@lib/cmsClient'
 import Nav from '@components/nav/Nav'
 import { navMain } from '@graphql/nav/nav-main.gql'
+import { entryQuery } from '@graphql/pages/entry.gql'
+import { categoryQuery } from '@graphql/pages/category.gql'
+import Header from '~/components/base/Header'
+import Content from '~/components/base/Content'
 
 export const meta: MetaFunction = () => ({
     charset: 'utf-8',
@@ -38,6 +42,11 @@ export const loader: LoaderFunction = async ({ params }) => {
 export default function Layout() {
     const loaderData = useLoaderData()
 
+    const context = {
+        lang: loaderData.lang,
+        navMain: loaderData.navMain.navigationNodes
+    }
+
     return (
         <html lang={loaderData.lang}>
             <head>
@@ -45,14 +54,8 @@ export default function Layout() {
                 <Links />
             </head>
             <body>
-                <Nav
-                    lang={loaderData.lang}
-                    mainNav={loaderData.navMain.navigationNodes}
-                />
+                <Outlet context={context} />
 
-                <main>
-                    <Outlet />
-                </main>
                 <ScrollRestoration />
                 <Scripts />
                 <LiveReload />
