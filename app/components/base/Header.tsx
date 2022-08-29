@@ -20,7 +20,7 @@ function Header(props: IHeaderProps) {
                 <div className="flex items-center">
                     <Nav lang={props.lang} mainNav={props.navMain} />
 
-                    <LangSwitcher locales={props.locales} />
+                    <LangSwitcher lang={props.lang} locales={props.locales} />
                 </div>
             </div>
         </Container>

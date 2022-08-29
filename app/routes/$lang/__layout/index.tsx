@@ -6,6 +6,7 @@ import { categoryQuery } from '@graphql/pages/category.gql'
 import { json } from '@remix-run/node'
 import { cmsClient } from '@lib/cmsClient'
 import Content from '~/components/base/Content'
+import Container from '~/components/base/Container'
 
 export const loader: LoaderFunction = async ({ params, request }) => {
     const queryParams = {
@@ -49,6 +50,8 @@ export default function Slug() {
             lang={lang}
             navMain={navMain}
             locales={loaderData.page.localized}
-        />
+        >
+            <Container>{loaderData.page.title}</Container>
+        </Content>
     )
 }

@@ -23,10 +23,9 @@ export const cmsClient = (params: IGraphqlQuery) => {
         'x-craft-live-preview': xCraftLivePreview
     } = params.routeQuery
 
-    const apiUrl =
-        preview && token
-            ? `${CRAFT_CMS_GRAPHQL_API_ENDPOINT}?token=${token}`
-            : CRAFT_CMS_GRAPHQL_API_ENDPOINT
+    const apiUrl = token
+        ? `${CRAFT_CMS_GRAPHQL_API_ENDPOINT}?token=${token}`
+        : CRAFT_CMS_GRAPHQL_API_ENDPOINT
     const customHeaders: ICustomHeaders = {}
 
     // If Live Preview

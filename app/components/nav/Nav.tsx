@@ -10,7 +10,7 @@ interface NavProps {
 
 function Nav(props: NavProps) {
     return (
-        <div className="bg-black-default text-white">
+        <div className="text-white bg-black-default">
             <Container>
                 <ul className="flex items-center h-16 text-black">
                     <li className="mr-4">
