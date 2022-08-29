@@ -14,23 +14,26 @@ export const loader: LoaderFunction = async ({ params, request }) => {
         site: params.lang
     }
     console.log(params['*'])
+
+    const searchParams = new URL(request.url).searchParams
+
+    const preview = searchParams.get('preview')
+    const token = searchParams.get('token')
+    const xcraftpreview = searchParams.get('x-craft-preview')
+    const xcraftlivepreview = searchParams.get('x-craft-live-preview')
+
     let pageContent
     const { data: page } = await cmsClient({
         query: entryQuery,
         variables: queryParams,
-        routeQuery: {}
+        routeQuery: {
+            preview,
+            token,
+            'x-craft-preview': xcraftpreview,
+            'x-craft-live-preview': xcraftlivepreview
+        }
     })
     pageContent = page.page
-
-    if (!pageContent) {
-        const { data: page } = await cmsClient({
-            query: categoryQuery,
-            variables: queryParams,
-            routeQuery: {}
-        })
-
-        pageContent = page.page
-    }
 
     return json(
         {
